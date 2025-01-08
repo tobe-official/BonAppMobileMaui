@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:BonAppMobileMaui.Views"
+             x:Class="BonAppMobileMaui.screens.SavedMealsPage"
+             Title="Saved Meals"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- AppBar -->
+        <VerticalStackLayout Grid.Row="0" Padding="10" BackgroundColor="White">
+            <Label Text="Favorites"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Body -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <Label x:Name="NoMealsLabel"
+                       Text="No Favored Meals!"
+                       FontSize="18"
+                       TextColor="Gray"
+                       IsVisible="False"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+
+                <!-- Meal List -->
+                <views:MealListProfileFavorite x:Name="MealList"
+                                               IsVisible="False" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

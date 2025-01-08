@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BonAppMobileMaui.screens.AddPost"
+             Title="Add a Meal" BackgroundColor="#FFFFFF"> <!-- Manually setting the background color -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <!-- Image Picker -->
+            <Frame CornerRadius="12" BorderColor="LightGray" HasShadow="True">
+                <Grid>
+                    <Image x:Name="PickedImage" Aspect="AspectFill" IsVisible="False" />
+                    <StackLayout x:Name="Placeholder" VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="image_placeholder.png" WidthRequest="40" HeightRequest="40" />
+                        <Label Text="Choose a Picture"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Gray" /> <!-- Using direct color -->
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Meal Name -->
+            <Entry x:Name="MealNameEntry" Placeholder="Name of the meal" />
+
+            <!-- Select Filters -->
+            <Button Text="Select Filters" Clicked="OnSelectFiltersClicked" BackgroundColor="#123456" TextColor="#FFFFFF" /> <!-- Manually setting colors -->
+
+            <!-- Time Dropdown -->
+            <Picker x:Name="TimePicker" Title="Select Time" />
+
+            <!-- Ingredients -->
+            <Editor x:Name="IngredientsEditor" Placeholder="Enter the ingredients here" AutoSize="TextChanges" />
+
+            <!-- Recipe -->
+            <Editor x:Name="RecipeEditor" Placeholder="Enter the recipe here" AutoSize="TextChanges" />
+
+            <!-- Post Meal -->
+            <Button x:Name="PostMealButton" Text="Post this great Meal" Clicked="OnPostMealClicked" IsEnabled="False" BackgroundColor="#123456" TextColor="#FFFFFF" /> <!-- Manually setting colors -->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

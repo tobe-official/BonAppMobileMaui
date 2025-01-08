@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:BonAppMobileMaui.screens"
+       x:Class="BonAppMobileMaui.AppShell">
+
+    <ShellContent 
+        Title="Login" 
+        ContentTemplate="{DataTemplate local:LoginPage}" 
+        Route="LoginPage" />
+
+    <TabBar>
+        <Tab>
+            <ShellContent 
+                Title="Home"
+                Icon="resource://BonAppMobileMaui.Resources.Images.home.svg"
+                ContentTemplate="{DataTemplate local:HomePage}" 
+                Route="HomePage" >
+            </ShellContent>
+        </Tab>
+    
+        <Tab>
+            <ShellContent 
+                Title="Add Post" 
+                Icon="resource://BonAppMobileMaui.Resources.Images.add.svg"
+                ContentTemplate="{DataTemplate local:AddPost}" 
+                Route="AddPostPage" />
+        </Tab>
+    
+        <Tab>
+            <ShellContent 
+                Title="Saved Meals" 
+                Icon="resource://BonAppMobileMaui.Resources.Images.bookmark.svg"
+                ContentTemplate="{DataTemplate local:SavedMealsPage}" 
+                Route="SavedMealsPage" />
+        </Tab>
+    
+        <Tab>
+            <ShellContent 
+                Title="Account" 
+                Icon="resource://BonAppMobileMaui.Resources.Images.account.svg"
+                ContentTemplate="{DataTemplate local:AccountPage}" 
+                Route="AccountPage">
+            </ShellContent>
+        </Tab>
+    </TabBar>
+</Shell>

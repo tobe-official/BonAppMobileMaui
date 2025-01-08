@@ -1,0 +1,83 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-ios
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BonAppMobileMaui
+build_property.ProjectDir = /Users/raphaelschreiber/BonAppMobileMaui/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[/Users/raphaelschreiber/BonAppMobileMaui/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/global_widgets/MealListProfileFavorite.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.global_widgets.MealListProfileFavorite.xaml
+build_metadata.AdditionalFiles.TargetPath = global_widgets/MealListProfileFavorite.xaml
+build_metadata.AdditionalFiles.RelativePath = global_widgets/MealListProfileFavorite.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/screens/AccountPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.screens.AccountPage.xaml
+build_metadata.AdditionalFiles.TargetPath = screens/AccountPage.xaml
+build_metadata.AdditionalFiles.RelativePath = screens/AccountPage.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/screens/AddPost.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.screens.AddPost.xaml
+build_metadata.AdditionalFiles.TargetPath = screens/AddPost.xaml
+build_metadata.AdditionalFiles.RelativePath = screens/AddPost.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/screens/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.screens.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = screens/HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = screens/HomePage.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/screens/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.screens.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = screens/LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = screens/LoginPage.xaml
+
+[/Users/raphaelschreiber/BonAppMobileMaui/screens/SavedMealsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = BonAppMobileMaui.screens.SavedMealsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = screens/SavedMealsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = screens/SavedMealsPage.xaml
