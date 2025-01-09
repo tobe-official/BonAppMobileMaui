@@ -1,9 +1,12 @@
-﻿namespace BonAppMobileMaui;
+﻿using Microsoft.Maui.Controls;
 
-public partial class AppShell : Shell
+namespace BonAppMobileMaui
 {
-    public AppShell()
+    public partial class AppShell : Shell
     {
-        InitializeComponent();
+        public AppShell()
+        {
+            InitializeComponent();
+        }
     }
 }

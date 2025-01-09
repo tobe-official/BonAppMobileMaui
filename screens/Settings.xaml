@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BonAppMobileMaui.screens.Settings"
+             Title="Settings">
+
+    <!-- ToolbarItem for Logout -->
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="logout_icon.png"
+                     Order="Primary"
+                     Priority="0"
+                     Text="Logout"
+                     Clicked="OnLogoutTapped"/>
+    </ContentPage.ToolbarItems>-->
+
+    <!-- Main Content -->
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="20">
+
+            <!-- Entry for Username -->
+            <Entry 
+                x:Name="UsernameEntry"
+                Placeholder="Username"
+                Text="{Binding Username}" />
+
+            <!-- Entry for Email -->
+            <Entry 
+                x:Name="EmailEntry"
+                Placeholder="Email"
+                Keyboard="Email"
+                Text="{Binding Email}" />
+
+            <!-- Switcher for Notifications -->
+            <Label Text="Enable Notifications" />
+            <Switch
+                x:Name="NotificationsSwitcher"
+                IsToggled="{Binding EnableNotifications}" />
+
+            <!-- Radio Buttons for Meal Preferences -->
+            <Label Text="Preferred Meal Type" />
+            <StackLayout Orientation="Horizontal">
+                <RadioButton GroupName="MealType" Content="Vegetarian" IsChecked="{Binding IsVegetarian}" />
+                <RadioButton GroupName="MealType" Content="Non-Vegetarian" IsChecked="{Binding IsNonVegetarian}" />
+                <RadioButton GroupName="MealType" Content="Vegan" IsChecked="{Binding IsVegan}" />
+            </StackLayout>
+
+            <!-- Slider for Meal Preparation Time -->
+            <Label Text="Meal Prep Time (mins)" />
+            <Slider 
+                Minimum="0" 
+                Maximum="120"
+                Value="{Binding MealPrepTime}"
+                ValueChanged="OnSliderValueChanged" />
+            <Label Text="{Binding MealPrepTime}" />
+
+            <!-- Picker for Favorite Cuisine -->
+            <Label Text="Favorite Cuisine" />
+            <Picker 
+                x:Name="CuisinePicker"
+                SelectedItem="{Binding FavoriteCuisine}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Italian</x:String>
+                        <x:String>Chinese</x:String>
+                        <x:String>Mexican</x:String>
+                        <x:String>Indian</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- DatePicker for Birthdate -->
+            <Label Text="Birthdate" />
+            <DatePicker
+                x:Name="BirthdatePicker"
+                Date="{Binding Birthdate}" />
+
+            <!-- TimePicker for Preferred Meal Time -->
+            <Label Text="Preferred Meal Time" />
+            <TimePicker
+                x:Name="MealTimePicker"
+                Time="{Binding PreferredMealTime}" />
+
+            <!-- Save Button -->
+            <Button Text="Save Settings" Command="{Binding SaveCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

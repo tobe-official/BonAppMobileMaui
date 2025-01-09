@@ -10,32 +10,35 @@ public static class FoodData
         new FoodModel(
             1, 
             "Lasagne", 
-            "resource://BonAppMobileMaui.Resources.Images.lasagna.jpg", 
+            "lasagna.jpg", 
             Time.Slow, 
             "Pasta, Tomato Sauce, Cheese", 
             "Cook pasta, Layer ingredients, Bake", 
-            "DummyUser", 
-            new List<Filters> { Filters.Italian, Filters.Baked }
+            "User1", 
+            Filters.Italian,
+            isResourceImage: true
         ),
         new FoodModel(
             2, 
             "Spaghetti Bolognese", 
-            "resource://BonAppMobileMaui.Resources.Images.spaghetti_bolognese.avif", 
+            "spaghetti_bolognese.avif", 
             Time.HalfSlow, 
             "Spaghetti, Ground Meat, Tomato Sauce", 
             "Boil pasta, Cook sauce, Serve", 
-            "user", 
-            new List<Filters> { Filters.Italian, Filters.Healthy }
-        ),
+            "User1", 
+            Filters.Healthy,
+            isResourceImage: true   
+            ),
         new FoodModel(
             3, 
             "Pizza Margherita", 
-            "resource://BonAppMobileMaui.Resources.Images.pizza_margheritta.jpg", 
+            "pizza_margheritta.jpg", 
             Time.HalfSlow, 
             "Pizza Dough, Tomato Sauce, Cheese", 
             "Prepare dough, Add toppings, Bake", 
-            "user2", 
-            new List<Filters> { Filters.Italian, Filters.Baked }
+            "User1", 
+            Filters.Baked,
+            isResourceImage: true
         )
     };
 }

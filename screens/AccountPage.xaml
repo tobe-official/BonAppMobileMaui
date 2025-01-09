@@ -1,15 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:globalWidgets="clr-namespace:BonAppMobileMaui.GlobalWidgets"
              x:Class="BonAppMobileMaui.screens.AccountPage"
-             Title="Account"
              BackgroundColor="{StaticResource BackgroundColor}">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Account"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-        <Label Text="Hier findest du deine Kontoeinstellungen."
-               FontSize="16"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <!-- ToolbarItem for Settings -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="settings_icon.png" 
+                     Order="Primary" 
+                     Priority="0" 
+                     Text=""
+                     Clicked="OnSettingsTapped" />
+    </ContentPage.ToolbarItems>
+
+    <!-- Main Content -->
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
+                <!-- Username -->
+                <Label x:Name="UsernameLabel"
+                       FontSize="35"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" />
+
+                <!-- Stats Row -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="30">
+                    <VerticalStackLayout>
+                        <Label x:Name="MealsCountLabel"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label x:Name="FollowersCountLabel"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label x:Name="FollowingCountLabel"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+                <!-- No Meals Label -->
+                <Label x:Name="NoMealsLabel"
+                       IsVisible="False"
+                       Text="You have not posted a meal yet..."
+                       FontSize="18"
+                       FontAttributes="Italic"
+                       TextColor="Gray"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center" />
+
+                <!-- Meals List -->
+                <globalWidgets:MealListProfileFavorite x:Name="MealsList"
+                                               IsVisible="False" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

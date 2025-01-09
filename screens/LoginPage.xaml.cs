@@ -41,7 +41,6 @@ namespace BonAppMobileMaui.screens
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Login failed: {ex.Message}");
                 await DisplayAlert("Error", "An error occurred during login.", "OK");
             }
         }

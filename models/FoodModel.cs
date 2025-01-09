@@ -10,7 +10,9 @@ public class FoodModel(
     string ingredients,
     string steps,
     string username,
-    List<Filters> filters)
+    Filters filters,
+    bool isResourceImage
+    )
 {
     public int Id { get; set; } = id;
     public string Name { get; set; } = name;
@@ -19,5 +21,6 @@ public class FoodModel(
     public string Ingredients { get; set; } = ingredients;
     public string Steps { get; set; } = steps;
     public string Username { get; set; } = username;
-    public List<Filters> Filters { get; set; } = filters;
+    public Filters Filters { get; set; } = filters;
+    public bool IsResourceImage { get; set; } = isResourceImage;
 }

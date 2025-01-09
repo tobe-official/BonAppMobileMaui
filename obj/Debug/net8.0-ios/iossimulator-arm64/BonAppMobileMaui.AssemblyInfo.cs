@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BonAppMobileMaui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+a06d04573b1f22282a8f24f47c0919efa107bb49")]
 [assembly: System.Reflection.AssemblyProductAttribute("BonAppMobileMaui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BonAppMobileMaui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

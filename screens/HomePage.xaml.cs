@@ -7,10 +7,10 @@ namespace BonAppMobileMaui.screens
 {
     public partial class HomePage : ContentPage
     {
-        private readonly User _activeUser = ActiveUserSingleton.Instance.ActiveUser;
+        private readonly User _activeUser = ActiveUserSingleton.Instance.ActiveUser!;
         private readonly List<FoodModel> _meals = FoodListSingleton.Instance.FoodList;
         private bool _isFoodCourt = true;
-        private int _currentMealIndex = 0; // Tracks the currently displayed meal card
+        private int _currentMealIndex = 0;
 
         public HomePage()
         {
@@ -62,90 +62,86 @@ namespace BonAppMobileMaui.screens
         }
 
         private SwipeView CreateMealCard(FoodModel food)
-{
-    var mealCard = new StackLayout
-    {
-        Orientation = StackOrientation.Vertical,
-        Margin = new Thickness(10),
-        Children =
         {
-            new Label 
-            { 
-                Text = $"By {food.Username}", 
-                FontSize = 16, 
-                HorizontalOptions = LayoutOptions.Center 
-            },
-            new Border
+            var mealCard = new StackLayout
             {
-                StrokeShape = new RoundRectangle()
+                Orientation = StackOrientation.Vertical,
+                Margin = new Thickness(10),
+                Children =
                 {
-                    CornerRadius = new CornerRadius(20)
-                },
-                WidthRequest = 350,
-                HeightRequest = 450,
-                Stroke = Colors.Transparent,
-                Content = new Image
-                {
-                    // Anpassen des Bildes, um aus den Assets zu laden
-                    Source = ImageSource.FromResource($"BonAppMobileMaui.Resources.Images.{food.ImagePath}"),
-                    Aspect = Aspect.AspectFill,
-                    WidthRequest = 300,
-                    HeightRequest = 400
+                    new Label 
+                    { 
+                        Text = $"By {food.Username}", 
+                        FontSize = 16, 
+                        HorizontalOptions = LayoutOptions.Center 
+                    },
+                    new Border
+                    {
+                        StrokeShape = new RoundRectangle()
+                        {
+                            CornerRadius = new CornerRadius(20)
+                        },
+                        WidthRequest = 350,
+                        HeightRequest = 450,
+                        Stroke = Colors.Transparent,
+                        Content = new Image
+                        {
+                            Source = food.ImagePath,
+                            Aspect = Aspect.AspectFill,
+                            WidthRequest = 300,
+                            HeightRequest = 400
+                        }
+                    },
+                    new Label 
+                    { 
+                        Text = food.Name, 
+                        FontSize = 20, 
+                        FontAttributes = FontAttributes.Bold 
+                    },
+                    CreateIconRow(food)
                 }
-            },
-            new Label 
-            { 
-                Text = food.Name, 
-                FontSize = 20, 
-                FontAttributes = FontAttributes.Bold 
-            },
-            CreateIconRow(food)
-        }
-    };
+            };
 
-    // SwipeView wie gehabt
-    var swipeView = new SwipeView
-    {
-        Content = mealCard,
-        LeftItems = new SwipeItems
-        {
-            new SwipeItem
+            var swipeView = new SwipeView
             {
-                IconImageSource = "like_icon.png",
-                Command = new Command(() => OnSwipeMeal(food))
-            }
-        },
-        RightItems = new SwipeItems
-        {
-            new SwipeItem
+                Content = mealCard,
+                LeftItems = new SwipeItems
+                {
+                    new SwipeItem
+                    {
+                        IconImageSource = "like_icon.png",
+                        Command = new Command(() => OnSwipeMeal(food))
+                    }
+                },
+                RightItems = new SwipeItems
+                {
+                    new SwipeItem
+                    {
+                        IconImageSource = "report_icon.png",
+                        Command = new Command(() => OnSwipeMeal(food))
+                    }
+                }
+            };
+
+            swipeView.SwipeEnded += async (sender, args) =>
             {
-                IconImageSource = "report_icon.png",
-                Command = new Command(() => OnSwipeMeal(food))
-            }
+                if (args.IsOpen)
+                {
+                    OnSwipeMeal(food);
+
+                    await Task.Delay(500);
+                    swipeView.Close();
+                }
+            };
+
+            return swipeView;
         }
-    };
-
-    swipeView.SwipeEnded += async (sender, args) =>
-    {
-        if (args.IsOpen)
-        {
-            OnSwipeMeal(food);
-
-            // Schließt den SwipeView nach einer kleinen Verzögerung
-            await Task.Delay(500);
-            swipeView.Close();
-        }
-    };
-
-    return swipeView;
-}
 
         private void OnSwipeMeal(FoodModel food)
         {
             _activeUser.SwipedMeals.Add(food.Id);
-            _currentMealIndex++; // Move to the next meal
-            LoadMealCards(); // Reload the cards
-            Console.WriteLine($"Meal {food.Name} swiped away!");
+            _currentMealIndex++;
+            LoadMealCards();
         }
 
         private StackLayout CreateIconRow(FoodModel food)
@@ -176,13 +172,7 @@ namespace BonAppMobileMaui.screens
                 _activeUser.FavoredMeals.Remove(food.Id);
             }
 
-            // Aktualisiere die Daten im Singleton
-            FoodListSingleton.Instance.SetFoodList(_meals);
-
-            // Optional: Benachrichtige SavedMealsPage, dass sich die gespeicherten Mahlzeiten geändert haben.
-            MessagingCenter.Send(this, "SavedMealsUpdated");
-
-            Console.WriteLine($"Meal {food.Name} saved!");
+            FoodListSingleton.Instance.SetFoodList(_meals); 
         }
 
         private void OnLikeButtonClicked(FoodModel food)
@@ -195,12 +185,11 @@ namespace BonAppMobileMaui.screens
             {
                 _activeUser.LikedMeals.Remove(food.Id);
             }
-            Console.WriteLine($"Meal {food.Name} liked!");
         }
 
         private void OnReportButtonClicked(FoodModel food)
         {
-            Console.WriteLine($"Meal {food.Name} reported.");
+            DisplayAlert("Report", "Reported: " + food.Name, "OK");
         }
     }
 }

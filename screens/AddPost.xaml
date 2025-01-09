@@ -2,42 +2,75 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BonAppMobileMaui.screens.AddPost"
-             Title="Add a Meal" BackgroundColor="#FFFFFF"> <!-- Manually setting the background color -->
+             Title="Add a Meal" BackgroundColor="#FFFFFF">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20">
+        <VerticalStackLayout Padding="20" Spacing="20">
             <!-- Image Picker -->
-            <Frame CornerRadius="12" BorderColor="LightGray" HasShadow="True">
+            <Frame x:Name="ImageFrame" CornerRadius="12" BorderColor="LightGray" HasShadow="True" BackgroundColor="#F3F3E0" Padding="10" MinimumHeightRequest="150" HeightRequest="200">
                 <Grid>
                     <Image x:Name="PickedImage" Aspect="AspectFill" IsVisible="False" />
-                    <StackLayout x:Name="Placeholder" VerticalOptions="Center" HorizontalOptions="Center">
-                        <Image Source="image_placeholder.png" WidthRequest="40" HeightRequest="40" />
-                        <Label Text="Choose a Picture"
+                    <Grid x:Name="Placeholder" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <Label Text="Click to add a picture"
                                FontAttributes="Bold"
                                FontSize="18"
                                HorizontalTextAlignment="Center"
-                               TextColor="Gray" /> <!-- Using direct color -->
-                    </StackLayout>
+                               VerticalTextAlignment="Center"
+                               TextColor="Gray" />
+                    </Grid>
                 </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnImageTapped" />
+                </Frame.GestureRecognizers>
             </Frame>
 
             <!-- Meal Name -->
-            <Entry x:Name="MealNameEntry" Placeholder="Name of the meal" />
+            <Frame CornerRadius="8" BorderColor="#CCCCCC" BackgroundColor="Transparent" Padding="0">
+                <Entry x:Name="MealNameEntry" 
+                       Placeholder="Name of the meal" 
+                       PlaceholderColor="#888888" 
+                       BackgroundColor="Transparent"
+                       Margin="10,5" 
+                       TextColor="Black"
+                       />
+            </Frame>
 
             <!-- Select Filters -->
-            <Button Text="Select Filters" Clicked="OnSelectFiltersClicked" BackgroundColor="#123456" TextColor="#FFFFFF" /> <!-- Manually setting colors -->
+            <Picker x:Name="FilterPicker" 
+                    Title="Select Filter" 
+                    Margin="0,0,0,10" />
 
             <!-- Time Dropdown -->
-            <Picker x:Name="TimePicker" Title="Select Time" />
+            <Picker x:Name="TimePicker" 
+                    Title="Select Time" 
+                    Margin="0,0,0,10" />
 
             <!-- Ingredients -->
-            <Editor x:Name="IngredientsEditor" Placeholder="Enter the ingredients here" AutoSize="TextChanges" />
+            <Frame CornerRadius="8" BorderColor="#CCCCCC" BackgroundColor="Transparent" Padding="0">
+                <Editor x:Name="IngredientsEditor" 
+                        Placeholder="Enter the ingredients here" 
+                        PlaceholderColor="#888888" 
+                        AutoSize="TextChanges" 
+                        Margin="10,5" />
+            </Frame>
 
             <!-- Recipe -->
-            <Editor x:Name="RecipeEditor" Placeholder="Enter the recipe here" AutoSize="TextChanges" />
+            <Frame CornerRadius="8" BorderColor="#CCCCCC" BackgroundColor="Transparent" Padding="0">
+                <Editor x:Name="RecipeEditor" 
+                        Placeholder="Enter the recipe here" 
+                        PlaceholderColor="#888888" 
+                        AutoSize="TextChanges" 
+                        Margin="10,5" />
+            </Frame>
 
             <!-- Post Meal -->
-            <Button x:Name="PostMealButton" Text="Post this great Meal" Clicked="OnPostMealClicked" IsEnabled="False" BackgroundColor="#123456" TextColor="#FFFFFF" /> <!-- Manually setting colors -->
+            <Button x:Name="PostMealButton" 
+                    Text="Create Meal" 
+                    BackgroundColor="#123456" 
+                    TextColor="#FFFFFF" 
+                    Width="20"
+                    CornerRadius="20"
+                    Clicked="OnPostMealClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

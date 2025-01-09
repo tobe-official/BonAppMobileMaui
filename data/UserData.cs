@@ -11,8 +11,8 @@ namespace BonAppMobileMaui.data;
                 email: "john@example.com",
                 password: "hallo",
                 favoredMeals: new List<int> { },
-                followingUsernames: new List<string> { "jane_smith", "bob_jones" },
-                followersUsernames: new List<string> { "alice_williams", "bob_jones" },
+                followingUsernames: new List<string> { },
+                followersUsernames: new List<string> { },
                 likedMeals: new List<int> { },
                 swipedMeals: new List<int> { }
             ),
@@ -21,8 +21,8 @@ namespace BonAppMobileMaui.data;
                 email: "jane@example.com",
                 password: "hallo",
                 favoredMeals: new List<int> {  },
-                followingUsernames: new List<string> { "john_doe", "alice_williams" },
-                followersUsernames: new List<string> { "john_doe", "bob_jones" },
+                followingUsernames: new List<string> { },
+                followersUsernames: new List<string> { },
                 likedMeals: new List<int> {},
                 swipedMeals: new List<int> {  }
             ),
@@ -31,8 +31,8 @@ namespace BonAppMobileMaui.data;
                 email: "alice@example.com",
                 password: "hallo",
                 favoredMeals: new List<int> { },
-                followingUsernames: new List<string> { "john_doe" },
-                followersUsernames: new List<string> { "john_doe", "jane_smith" },
+                followingUsernames: new List<string> { },
+                followersUsernames: new List<string> {},
                 likedMeals: new List<int> {  },
                 swipedMeals: new List<int> {  }
             ),
@@ -41,8 +41,8 @@ namespace BonAppMobileMaui.data;
                 email: "bob@example.com",
                 password: "hallo",
                 favoredMeals: new List<int> {  },
-                followingUsernames: new List<string> { "john_doe", "jane_smith" },
-                followersUsernames: new List<string> { "alice_williams" },
+                followingUsernames: new List<string> { },
+                followersUsernames: new List<string> { },
                 likedMeals: new List<int> {  },
                 swipedMeals: new List<int> {  }
             )

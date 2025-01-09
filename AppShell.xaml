@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:BonAppMobileMaui.screens"
-       x:Class="BonAppMobileMaui.AppShell">
+       x:Class="BonAppMobileMaui.AppShell"
+       Shell.TabBarBackgroundColor="#F3F3E0">
 
     <ShellContent 
         Title="Login" 
@@ -12,33 +12,33 @@
     <TabBar>
         <Tab>
             <ShellContent 
-                Title="Home"
-                Icon="resource://BonAppMobileMaui.Resources.Images.home.svg"
+                Title=""
+                Icon="home1.png"
                 ContentTemplate="{DataTemplate local:HomePage}" 
                 Route="HomePage" >
             </ShellContent>
         </Tab>
-    
+
         <Tab>
             <ShellContent 
                 Title="Add Post" 
-                Icon="resource://BonAppMobileMaui.Resources.Images.add.svg"
+                Icon="add1.png"
                 ContentTemplate="{DataTemplate local:AddPost}" 
                 Route="AddPostPage" />
         </Tab>
-    
+
         <Tab>
             <ShellContent 
                 Title="Saved Meals" 
-                Icon="resource://BonAppMobileMaui.Resources.Images.bookmark.svg"
+                Icon="bookmark1.png"
                 ContentTemplate="{DataTemplate local:SavedMealsPage}" 
                 Route="SavedMealsPage" />
         </Tab>
-    
+
         <Tab>
             <ShellContent 
                 Title="Account" 
-                Icon="resource://BonAppMobileMaui.Resources.Images.account.svg"
+                Icon="account1.png"
                 ContentTemplate="{DataTemplate local:AccountPage}" 
                 Route="AccountPage">
             </ShellContent>

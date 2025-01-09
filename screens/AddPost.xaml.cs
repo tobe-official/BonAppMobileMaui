@@ -4,15 +4,15 @@ using BonAppMobileMaui.Singletons;
 
 namespace BonAppMobileMaui.screens
 {
-    public partial class AddPost : ContentPage
+    public partial class AddPost
     {
-        private FileResult _selectedImage;
-        private readonly List<Filters> _selectedFilters = new();
+        private FileResult? _selectedImage;
 
         public AddPost()
         {
             InitializeComponent();
             PopulateTimePicker();
+            PopulateFilterPicker();
 
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += OnImageTapped;
@@ -26,103 +26,94 @@ namespace BonAppMobileMaui.screens
                 TimePicker.Items.Add(time.ToString());
             }
         }
-
-        private async void OnImageTapped(object sender, EventArgs e)
+        
+        private void PopulateFilterPicker()
         {
-            _selectedImage = await PickImageFromGalleryAsync();
-            if (_selectedImage != null)
+            foreach (var filter in Enum.GetValues(typeof(Filters)))
             {
-                Placeholder.IsVisible = false;
-                PickedImage.IsVisible = true;
-                PickedImage.Source = ImageSource.FromFile(_selectedImage.FullPath);
-                ValidateForm();
+                FilterPicker.Items.Add(filter.ToString());
             }
         }
 
-        private async Task<FileResult> PickImageFromGalleryAsync()
+        private async Task<FileResult?> PickImageFromGalleryAsync()
         {
             try
             {
                 var mediaResult = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
                 {
-                    Title = "Wählen Sie ein Foto"
+                    Title = "Choose an image",
                 });
 
-                if (mediaResult != null)
-                {
-                    return mediaResult;
-                }
-
-                return null;
+                return mediaResult; // Wenn der Benutzer eine Datei auswählt, wird sie zurückgegeben
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                return null; // Rückgabe von null, wenn abgebrochen oder ein Fehler auftritt
             }
         }
 
-        private async void OnSelectFiltersClicked(object sender, EventArgs e)
+        private async void OnImageTapped(object sender, EventArgs e)
         {
-            var tempSelectedFilters = new List<Filters>(_selectedFilters);
-
-            var result = await DisplayActionSheet("Select Filters", "Cancel", null,
-                Enum.GetNames(typeof(Filters)));
-
-            if (!string.IsNullOrEmpty(result) && result != "Cancel")
+            _selectedImage = await PickImageFromGalleryAsync();
+            if (_selectedImage != null) // Überprüfen, ob eine Datei ausgewählt wurde
             {
-                var filter = (Filters)Enum.Parse(typeof(Filters), result);
-                if (!_selectedFilters.Contains(filter))
-                {
-                    _selectedFilters.Add(filter);
-                }
-            }
+                Placeholder.IsVisible = false;
+                PickedImage.IsVisible = true;
+                PickedImage.Source = ImageSource.FromFile(_selectedImage.FullPath);
 
-            ValidateForm();
+                // Seitenverhältnis ändern, wenn das Bild ausgewählt wurde
+                ImageFrame.WidthRequest = 300;  // Maximale Breite
+                ImageFrame.HeightRequest = 200; // Maximale Höhe (ändert sich nun korrekt)
+
+                // Optional: das Bild im Seitenverhältnis 3:2 anpassen
+                PickedImage.WidthRequest = 300;  // Breite des Bildes
+                PickedImage.HeightRequest = 200; // Höhe des Bildes
+            }
         }
 
-        private void ValidateForm()
+        private bool ValidateForm()
         {
-            PostMealButton.IsEnabled = !string.IsNullOrWhiteSpace(MealNameEntry.Text) &&
-                                       TimePicker.SelectedIndex >= 0 &&
-                                       _selectedImage != null &&
-                                       _selectedFilters.Any() &&
-                                       !string.IsNullOrWhiteSpace(IngredientsEditor.Text) &&
-                                       !string.IsNullOrWhiteSpace(RecipeEditor.Text);
-
-            if (PostMealButton.IsEnabled)
-            {
-                PostMealButton.BackgroundColor = Color.FromHex("#123456");
-            }
-            else
-            {
-                PostMealButton.BackgroundColor = Color.FromHex("#F3F3E0"); 
-            }
+            bool isFormValid = !string.IsNullOrWhiteSpace(MealNameEntry.Text) &&
+                               FilterPicker.SelectedIndex >= 0 &&
+                               TimePicker.SelectedIndex >= 0 &&
+                               _selectedImage != null &&
+                               !string.IsNullOrWhiteSpace(IngredientsEditor.Text) &&
+                               !string.IsNullOrWhiteSpace(RecipeEditor.Text);
+            return isFormValid;
         }
 
         private async void OnPostMealClicked(object sender, EventArgs e)
         {
-            try
+            if (ValidateForm())
             {
-                var newMeal = new FoodModel(
-                    id: (int)(DateTime.Now.Ticks % int.MaxValue), 
-                    name: MealNameEntry.Text, 
-                    imagePath: _selectedImage.FullPath, 
-                    time: (Time)Enum.Parse(typeof(Time), TimePicker.SelectedItem.ToString()), 
-                    ingredients: IngredientsEditor.Text, 
-                    steps: RecipeEditor.Text, 
-                    username: ActiveUserSingleton.Instance.ActiveUser.Username,
-                    filters: _selectedFilters  
-                );
+                try
+                {
+                    var newMeal = new FoodModel(
+                        id: (int)(DateTime.Now.Ticks % int.MaxValue), 
+                        name: MealNameEntry.Text, 
+                        imagePath: _selectedImage!.FullPath, 
+                        time: (Time)Enum.Parse(typeof(Time), TimePicker.SelectedItem.ToString()!), 
+                        ingredients: IngredientsEditor.Text, 
+                        steps: RecipeEditor.Text, 
+                        username: ActiveUserSingleton.Instance.ActiveUser.Username,
+                        filters: (Filters)Enum.Parse(typeof(Filters), FilterPicker.SelectedItem.ToString()!),
+                        isResourceImage: false
+                    );
 
-                FoodListSingleton.Instance.FoodList.Add(newMeal);
+                    FoodListSingleton.Instance.FoodList.Add(newMeal);
+                    
+                    await DisplayAlert("Success", "Meal posted!", "OK");
 
-                await DisplayAlert("Success", "Meal posted!", "OK");
-
-                ResetForm();
+                    ResetForm();
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", "An error occurred while posting the meal: " + ex.Message, "OK");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                await DisplayAlert("Error", "An error occurred while posting the meal: " + ex.Message, "OK");
+                await DisplayAlert("Fill all the inputs", "Please fill all the input fields completely and check if the image is selected.", "OK");
             }
         }
 
@@ -134,7 +125,7 @@ namespace BonAppMobileMaui.screens
 
             TimePicker.SelectedIndex = -1;
 
-            _selectedFilters.Clear();
+            FilterPicker.SelectedIndex = -1;
 
             _selectedImage = null;
             Placeholder.IsVisible = true;
