@@ -1,88 +1,106 @@
+using BonAppMobileMaui.data;
 using BonAppMobileMaui.models;
 using BonAppMobileMaui.Singletons;
-using Microsoft.Maui.Controls;
 
-namespace BonAppMobileMaui.screens
+namespace BonAppMobileMaui.screens;
+
+public partial class Settings : ContentPage
 {
-    public partial class Settings : ContentPage
+    private User _activeUser = ActiveUserSingleton.Instance.ActiveUser;
+
+    public Settings()
     {
-        public Settings()
-        {
-            InitializeComponent();
-            BindingContext = new SettingsViewModel();
-        }
-
-        private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            Console.WriteLine($"Slider value changed to: {e.NewValue}");
-        }
-
-        private async void OnLogoutTapped(object sender, EventArgs e)
-        {
-            var emptyUser = new User("", "", "", new List<int>(), new List<string>(), new List<string>(),
-                new List<int>(), new List<int>());
-            // Reset the active user
-            ActiveUserSingleton.Instance.SetUser(emptyUser);
-
-            // Navigate to the login screen
-            await Navigation.PushAsync(new LoginPage());
-        }
-        
+        InitializeComponent();
+        LoadUserData();
     }
 
-    public class SettingsViewModel
+    private void LoadUserData()
     {
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public bool EnableNotifications { get; set; }
+        // Daten in die Inputs laden
+        UsernameEntry.Text = _activeUser.Username;
+        EmailEntry.Text = _activeUser.Email;
+        NotificationsSwitcher.IsToggled = _activeUser.NotificationEnabled;
 
-        // RadioButton Bindings
-        public bool IsVegetarian { get; set; }
-        public bool IsNonVegetarian { get; set; }
-        public bool IsVegan { get; set; }
+        VegetarianRadio.IsChecked = _activeUser.IsVegetarian;
+        NonVegetarianRadio.IsChecked = _activeUser.IsMeatEater;
+        VeganRadio.IsChecked = _activeUser.IsVegan;
 
-        // Slider Binding
-        public double MealPrepTime { get; set; }
+        BirthdatePicker.Date = _activeUser.DateOfBirth;
+        MealTimePicker.Time = _activeUser.PreferredMealTime;
+    }
 
-        // Picker Binding
-        public string FavoriteCuisine { get; set; }
+    private async void OnSaveClicked(object sender, EventArgs e)
+    {
+        // Validierung
+        string username = UsernameEntry.Text?.Trim() ?? string.Empty;
+        string email = EmailEntry.Text?.Trim() ?? string.Empty;
 
-        // DatePicker Binding
-        public DateTime Birthdate { get; set; }
-
-        // TimePicker Binding
-        public TimeSpan PreferredMealTime { get; set; }
-
-        // Command to save settings
-        public Command SaveCommand { get; set; }
-
-        public SettingsViewModel()
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email))
         {
-            // Initialize the data using ActiveUserSingleton
-            var activeUser = ActiveUserSingleton.Instance.ActiveUser;
-
-            Username = activeUser.Username;
-            Email = activeUser.Email;
-            EnableNotifications = false; // Default value or fetch from user preferences
-            IsVegetarian = false; // Default or fetch from user data
-            IsNonVegetarian = true; // Default or fetch from user data
-            IsVegan = false; // Default or fetch from user data
-            MealPrepTime = 30; // Default value
-            FavoriteCuisine = "Italian"; // Default or fetch from user data
-            Birthdate = DateTime.Now; // Default or fetch from user data
-            PreferredMealTime = new TimeSpan(12, 0, 0); // Default value
-
-            SaveCommand = new Command(SaveSettings);
+            await DisplayAlert("Error", "Username and email cannot be empty.", "OK");
+            return;
         }
 
-        private void SaveSettings()
+        if (!email.Contains("@"))
         {
-            // Implement logic to save the settings
-            Console.WriteLine("Settings saved!");
-
-            // Optionally update ActiveUserSingleton with new settings
-            ActiveUserSingleton.Instance.ActiveUser.Username = Username;
-            ActiveUserSingleton.Instance.ActiveUser.Email = Email;
+            await DisplayAlert("Error", "Invalid email address.", "OK");
+            return;
         }
+        
+        if (UserData.Users.Any(u => u.Username == username && u.Username != _activeUser.Username))
+        {
+            await DisplayAlert("Error", "Username already exists. Please choose another one.", "OK");
+            return;
+        }
+
+        if (UserData.Users.Any(u => u.Email == email && u.Email != _activeUser.Email))
+        {
+            await DisplayAlert("Error", "Email is already registered. Please choose another one.", "OK");
+            return;
+        }
+
+        // Werte aktualisieren
+        _activeUser.Username = username;
+        _activeUser.Email = email;
+        _activeUser.NotificationEnabled = NotificationsSwitcher.IsToggled;
+        _activeUser.IsVegetarian = VegetarianRadio.IsChecked;
+        _activeUser.IsMeatEater = NonVegetarianRadio.IsChecked;
+        _activeUser.IsVegan = VeganRadio.IsChecked;
+        _activeUser.DateOfBirth = BirthdatePicker.Date;
+        _activeUser.PreferredMealTime = MealTimePicker.Time;
+
+        // Im Singleton speichern
+        ActiveUserSingleton.Instance.SetUser(_activeUser);
+
+        await DisplayAlert("Success", "Settings have been saved.", "OK");
+    }
+
+    private async void OnFaQClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new FaQPage());
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        // Benutzer-Session zurücksetzen
+        ActiveUserSingleton.Instance.SetUser(new User(
+            username: "",
+            email: "",
+            password: "",
+            favoredMeals: new List<int>(),
+            followingUsernames: new List<string>(),
+            followersUsernames: new List<string>(),
+            likedMeals: new List<int>(),
+            swipedMeals: new List<int>(),
+            preferredMealTime: new TimeSpan(0, 0, 0),
+            isVegan: false,
+            isVegetarian: false,
+            isMeatEater: false,
+            dateOfBirth: DateTime.MinValue,
+            notificationEnabled: false
+        ));
+
+        Application.Current!.MainPage = new AppShell(); // AppShell ist deine Shell-Datei, die alles initialisiert
+        await Shell.Current.GoToAsync("//LoginPage"); // Sicherstellen, dass die App zur Login-Seite navigiert
     }
 }

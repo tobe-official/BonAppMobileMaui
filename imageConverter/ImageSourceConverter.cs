@@ -5,11 +5,11 @@ namespace BonAppMobileMaui.imageConverter
 {
     public class ImageSourceConverter : IValueConverter
     {
-        public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        public Object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is not string imageSource || parameter is not FoodModel food)
             {
-                return null;
+                return "";
             }
 
             return food.IsResourceImage

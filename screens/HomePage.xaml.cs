@@ -20,9 +20,7 @@ namespace BonAppMobileMaui.screens
         }
 
         public ICommand ToggleCommand => new Command(ToggleFoodCourt);
-
-        public string CurrentSection => _isFoodCourt ? "Food Court" : "Following";
-
+        
         private void InitializeData()
         {
             LoadMealCards();
@@ -44,7 +42,6 @@ namespace BonAppMobileMaui.screens
 
             if (_currentMealIndex >= filteredFood.Count)
             {
-                // No more meals to display
                 var noMoreMealsLabel = new Label
                 {
                     Text = "No more meals to show!",
@@ -96,7 +93,8 @@ namespace BonAppMobileMaui.screens
                     { 
                         Text = food.Name, 
                         FontSize = 20, 
-                        FontAttributes = FontAttributes.Bold 
+                        FontAttributes = FontAttributes.Bold,
+                        HorizontalOptions = LayoutOptions.Center,
                     },
                     CreateIconRow(food)
                 }
@@ -109,7 +107,6 @@ namespace BonAppMobileMaui.screens
                 {
                     new SwipeItem
                     {
-                        IconImageSource = "like_icon.png",
                         Command = new Command(() => OnSwipeMeal(food))
                     }
                 },
@@ -117,7 +114,6 @@ namespace BonAppMobileMaui.screens
                 {
                     new SwipeItem
                     {
-                        IconImageSource = "report_icon.png",
                         Command = new Command(() => OnSwipeMeal(food))
                     }
                 }
@@ -154,9 +150,27 @@ namespace BonAppMobileMaui.screens
                 Margin = new Thickness(0, 5),
                 Children =
                 {
-                    new Button { Text = "Like", Command = new Command(() => OnLikeButtonClicked(food)) },
-                    new Button { Text = "Save", Command = new Command(() => OnSaveButtonClicked(food)) },
-                    new Button { Text = "Report", Command = new Command(() => OnReportButtonClicked(food)) }
+                    new Button
+                    {
+                        Text = "Like",
+                        BackgroundColor = Color.FromArgb("#123456"),
+                        TextColor = Colors.White,
+                        Command = new Command(() => OnLikeButtonClicked(food))
+                    },
+                    new Button
+                    {
+                        Text = "Save",
+                        BackgroundColor = Color.FromArgb("#123456"),
+                        TextColor = Colors.White,
+                        Command = new Command(() => OnSaveButtonClicked(food))
+                    },
+                    new Button
+                    {
+                        Text = "Report",
+                        BackgroundColor = Color.FromArgb("#123456"),
+                        TextColor = Colors.White,
+                        Command = new Command(() => OnReportButtonClicked(food))
+                    }
                 }
             };
         }

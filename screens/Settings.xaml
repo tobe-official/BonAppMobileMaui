@@ -4,84 +4,50 @@
              x:Class="BonAppMobileMaui.screens.Settings"
              Title="Settings">
 
-    <!-- ToolbarItem for Logout -->
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="logout_icon.png"
+    <!-- ToolbarItems -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="settings_icon.png"
                      Order="Primary"
-                     Priority="0"
-                     Text="Logout"
-                     Clicked="OnLogoutTapped"/>
-    </ContentPage.ToolbarItems>-->
+                     Priority="1"
+                     Text=""
+                     Clicked="OnFaQClicked" />
+    </ContentPage.ToolbarItems>
 
-    <!-- Main Content -->
     <ScrollView Padding="20">
         <VerticalStackLayout Spacing="20">
 
-            <!-- Entry for Username -->
             <Entry 
                 x:Name="UsernameEntry"
-                Placeholder="Username"
-                Text="{Binding Username}" />
+                Placeholder="Username" />
 
-            <!-- Entry for Email -->
             <Entry 
                 x:Name="EmailEntry"
                 Placeholder="Email"
-                Keyboard="Email"
-                Text="{Binding Email}" />
+                Keyboard="Email" />
 
-            <!-- Switcher for Notifications -->
             <Label Text="Enable Notifications" />
             <Switch
-                x:Name="NotificationsSwitcher"
-                IsToggled="{Binding EnableNotifications}" />
+                x:Name="NotificationsSwitcher" />
 
-            <!-- Radio Buttons for Meal Preferences -->
             <Label Text="Preferred Meal Type" />
-            <StackLayout Orientation="Horizontal">
-                <RadioButton GroupName="MealType" Content="Vegetarian" IsChecked="{Binding IsVegetarian}" />
-                <RadioButton GroupName="MealType" Content="Non-Vegetarian" IsChecked="{Binding IsNonVegetarian}" />
-                <RadioButton GroupName="MealType" Content="Vegan" IsChecked="{Binding IsVegan}" />
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <RadioButton x:Name="VegetarianRadio" GroupName="MealType" Content="Vegetarian" />
+                <RadioButton x:Name="NonVegetarianRadio" GroupName="MealType" Content="Non-Vegetarian" />
+                <RadioButton x:Name="VeganRadio" GroupName="MealType" Content="Vegan" />
             </StackLayout>
 
-            <!-- Slider for Meal Preparation Time -->
-            <Label Text="Meal Prep Time (mins)" />
-            <Slider 
-                Minimum="0" 
-                Maximum="120"
-                Value="{Binding MealPrepTime}"
-                ValueChanged="OnSliderValueChanged" />
-            <Label Text="{Binding MealPrepTime}" />
-
-            <!-- Picker for Favorite Cuisine -->
-            <Label Text="Favorite Cuisine" />
-            <Picker 
-                x:Name="CuisinePicker"
-                SelectedItem="{Binding FavoriteCuisine}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Italian</x:String>
-                        <x:String>Chinese</x:String>
-                        <x:String>Mexican</x:String>
-                        <x:String>Indian</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-
-            <!-- DatePicker for Birthdate -->
             <Label Text="Birthdate" />
-            <DatePicker
-                x:Name="BirthdatePicker"
-                Date="{Binding Birthdate}" />
+            <DatePicker x:Name="BirthdatePicker" />
 
-            <!-- TimePicker for Preferred Meal Time -->
             <Label Text="Preferred Meal Time" />
-            <TimePicker
-                x:Name="MealTimePicker"
-                Time="{Binding PreferredMealTime}" />
+            <TimePicker x:Name="MealTimePicker" />
 
-            <!-- Save Button -->
-            <Button Text="Save Settings" Command="{Binding SaveCommand}" />
+            <Button Text="Save Settings" Clicked="OnSaveClicked" />
+            
+            <Button Text="Logout"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Clicked="OnLogoutClicked" />
 
         </VerticalStackLayout>
     </ScrollView>

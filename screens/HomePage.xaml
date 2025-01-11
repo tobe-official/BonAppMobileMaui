@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BonAppMobileMaui.imageConverter"
              x:Class="BonAppMobileMaui.screens.HomePage"
              Title="Home">
-    <ContentPage.Resources>
-        <!-- Registriere den Converter -->
-        <ResourceDictionary>
-            <local:ImageSourceConverter x:Key="ImageSourceConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <Grid>
         <!-- Main Content -->
         <ScrollView>
             <StackLayout>
                 <!-- Toggle Button -->
-                <Button Text="Toggle Food Court / Following"
+                <Button Text="Food Court / Following"
                         Command="{Binding ToggleCommand}"
                         HorizontalOptions="CenterAndExpand"
-                        Margin="10"/>
+                        Margin="10" BackgroundColor="#123456" TextColor="White"/>
                 
                 <!-- Meal Cards Stack Container -->
                 <StackLayout x:Name="MealCardContainer"

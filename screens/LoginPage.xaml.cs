@@ -1,6 +1,6 @@
 using BonAppMobileMaui.data;
+using BonAppMobileMaui.models;
 using BonAppMobileMaui.Singletons;
-using Microsoft.Maui.Controls;
 
 namespace BonAppMobileMaui.screens
 {
@@ -25,7 +25,7 @@ namespace BonAppMobileMaui.screens
 
             try
             {
-                var activeUser = UserData.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
+                User? activeUser = UserData.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
                 if (activeUser != null)
                 {
                     ActiveUserSingleton.Instance.SetUser(activeUser);
