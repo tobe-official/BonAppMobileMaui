@@ -5,7 +5,6 @@
              x:Class="BonAppMobileMaui.screens.AccountPage"
              BackgroundColor="{StaticResource BackgroundColor}">
 
-    <!-- ToolbarItem for Settings -->
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="settings_icon.png" 
                      Order="Primary" 
@@ -14,7 +13,6 @@
                      Clicked="OnSettingsTapped" />
     </ContentPage.ToolbarItems>
 
-    <!-- Main Content -->
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Padding="20" Spacing="20">

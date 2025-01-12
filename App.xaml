@@ -5,7 +5,6 @@
              x:Class="BonAppMobileMaui.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Merging the Colors.xaml and Styles.xaml files -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

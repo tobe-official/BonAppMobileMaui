@@ -44,30 +44,28 @@ namespace BonAppMobileMaui.screens
                     Title = "Choose an image",
                 });
 
-                return mediaResult; // Wenn der Benutzer eine Datei auswählt, wird sie zurückgegeben
+                return mediaResult; 
             }
             catch (Exception ex)
             {
-                return null; // Rückgabe von null, wenn abgebrochen oder ein Fehler auftritt
+                return null; 
             }
         }
 
         private async void OnImageTapped(object sender, EventArgs e)
         {
             _selectedImage = await PickImageFromGalleryAsync();
-            if (_selectedImage != null) // Überprüfen, ob eine Datei ausgewählt wurde
+            if (_selectedImage != null) 
             {
                 Placeholder.IsVisible = false;
                 PickedImage.IsVisible = true;
                 PickedImage.Source = ImageSource.FromFile(_selectedImage.FullPath);
 
-                // Seitenverhältnis ändern, wenn das Bild ausgewählt wurde
-                ImageFrame.WidthRequest = 300;  // Maximale Breite
-                ImageFrame.HeightRequest = 200; // Maximale Höhe (ändert sich nun korrekt)
+                ImageFrame.WidthRequest = 300;  
+                ImageFrame.HeightRequest = 200; 
 
-                // Optional: das Bild im Seitenverhältnis 3:2 anpassen
-                PickedImage.WidthRequest = 300;  // Breite des Bildes
-                PickedImage.HeightRequest = 200; // Höhe des Bildes
+                PickedImage.WidthRequest = 300;  
+                PickedImage.HeightRequest = 200;
             }
         }
 
