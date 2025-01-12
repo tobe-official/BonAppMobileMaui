@@ -5,12 +5,12 @@ using Microsoft.Maui.Controls.Shapes;
 
 namespace BonAppMobileMaui.screens
 {
-    public partial class HomePage : ContentPage
+    public partial class HomePage
     {
-        private readonly User _activeUser = ActiveUserSingleton.Instance.ActiveUser!;
+        private readonly User _activeUser = ActiveUserSingleton.Instance.ActiveUser;
         private readonly List<FoodModel> _meals = FoodListSingleton.Instance.FoodList;
         private bool _isFoodCourt = true;
-        private int _currentMealIndex = 0;
+        private int _currentMealIndex;
 
         public HomePage()
         {
@@ -85,8 +85,13 @@ namespace BonAppMobileMaui.screens
                         {
                             Source = food.ImagePath,
                             Aspect = Aspect.AspectFill,
-                            WidthRequest = 300,
-                            HeightRequest = 400
+                            WidthRequest = 350,
+                            HeightRequest = 450,
+                            Clip = new RoundRectangleGeometry
+                            {
+                                CornerRadius = new CornerRadius(20),
+                                Rect = new Rect(0, 0, 350, 450)
+                            }
                         }
                     },
                     new Label 

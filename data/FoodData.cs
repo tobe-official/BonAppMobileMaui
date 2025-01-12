@@ -21,7 +21,7 @@ public static class FoodData
         new FoodModel(
             2, 
             "Spaghetti Bolognese", 
-            "spaghetti_bolognese.avif", 
+            "spaghetti_bolognese.jpg", 
             Time.HalfSlow, 
             "Spaghetti, Ground Meat, Tomato Sauce", 
             "Boil pasta, Cook sauce, Serve", 
@@ -32,7 +32,7 @@ public static class FoodData
         new FoodModel(
             3, 
             "Pizza Margherita", 
-            "pizza_margheritta.jpg", 
+            "pizza_margherita.jpg", 
             Time.HalfSlow, 
             "Pizza Dough, Tomato Sauce, Cheese", 
             "Prepare dough, Add toppings, Bake", 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BonAppMobileMaui.screens.FaQPage" Title="FAQ Page">
+             x:Class="BonAppMobileMaui.screens.FaQPage" Title="FAQ and Introduction Page">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20" Spacing="15">
@@ -24,40 +24,40 @@
 
                 <!-- FAQ 1 -->
                 <StackLayout>
-                    <Button Text="Does swiping meals affect anything?" 
-                            FontAttributes="Bold" BackgroundColor="#f3f3f3" />
+                    <Button x:Name="Answer1Button" Text="Does swiping meals affect anything?" 
+                            FontAttributes="Bold" BackgroundColor="#123456" TextColor="White"/>
                     <Label x:Name="Answer1" Text="Currently, swiping meals left or right does not influence any algorithm. This feature is planned for future updates. For now, swiping helps you explore meals without committing to any choices." 
                            FontSize="Small" IsVisible="False" />
                 </StackLayout>
 
                 <!-- FAQ 2 -->
                 <StackLayout>
-                    <Button Text="How can I add a meal?" 
-                            FontAttributes="Bold" BackgroundColor="#f3f3f3" />
+                    <Button x:Name="Answer2Button" Text="How can I add a meal?" 
+                            FontAttributes="Bold" BackgroundColor="#123456" TextColor="White"/>
                     <Label x:Name="Answer2" Text="To add a meal, tap the '+' button in the bottom navigation bar. Fill in the required fields, such as the meal name, description, and ingredients, then tap 'Save.' Your meal will appear in the homepage feed and can be edited later from your profile." 
                            FontSize="Small" IsVisible="False" />
                 </StackLayout>
 
                 <!-- FAQ 3 -->
                 <StackLayout>
-                    <Button Text="Where can I find my saved meals?" 
-                            FontAttributes="Bold" BackgroundColor="#f3f3f3" />
+                    <Button x:Name="Answer3Button" Text="Where can I find my saved meals?" 
+                            FontAttributes="Bold" BackgroundColor="#123456" TextColor="White"/>
                     <Label x:Name="Answer3" Text="Your saved meals can be accessed from the 'Saved Meals' section, which is available through the bottom navigation bar. This feature allows you to revisit meals you like without searching again." 
                            FontSize="Small" IsVisible="False" />
                 </StackLayout>
 
                 <!-- FAQ 4 -->
                 <StackLayout>
-                    <Button Text="Can I edit my profile information?" 
-                            FontAttributes="Bold" BackgroundColor="#f3f3f3" />
+                    <Button x:Name="Answer4Button" Text="Can I edit my profile information?" 
+                            FontAttributes="Bold" BackgroundColor="#123456" TextColor="White"/>
                     <Label x:Name="Answer4" Text="Yes, you can edit your profile information by navigating to the 'Profile' page and tapping the 'Edit' button. From there, you can update details like your username and bio." 
                            FontSize="Small" IsVisible="False" />
                 </StackLayout>
 
                 <!-- FAQ 5 -->
                 <StackLayout>
-                    <Button Text="What can I do if I encounter a bug?" 
-                            FontAttributes="Bold" BackgroundColor="#f3f3f3" />
+                    <Button x:Name="Answer5Button" Text="What can I do if I encounter a bug?" 
+                            FontAttributes="Bold" BackgroundColor="#123456" TextColor="White"/>
                     <Label x:Name="Answer5" Text="If you encounter a bug, please report it by going to the 'Settings' page and selecting 'Report a Problem.' Provide as much detail as possible to help us resolve the issue quickly." 
                            FontSize="Small" IsVisible="False" />
                 </StackLayout>

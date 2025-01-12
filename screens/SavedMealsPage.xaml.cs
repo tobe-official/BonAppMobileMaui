@@ -1,5 +1,6 @@
 using BonAppMobileMaui.models;
 using BonAppMobileMaui.Singletons;
+
 namespace BonAppMobileMaui.screens;
 
 public partial class SavedMealsPage : ContentPage
@@ -10,17 +11,25 @@ public partial class SavedMealsPage : ContentPage
     {
         InitializeComponent();
 
-        var activeUser = ActiveUserSingleton.Instance.ActiveUser;
-        List<FoodModel>? meals = FoodListSingleton.Instance.FoodList;
-        _mealsFavored = meals?.Where(food => activeUser?.FavoredMeals.Contains(food.Id) ?? false).ToList() ?? new List<FoodModel>();
-
-        InitUI();
-
         MessagingCenter.Subscribe<HomePage>(this, "SavedMealsUpdated", (sender) =>
         {
-            _mealsFavored = meals?.Where(food => activeUser?.FavoredMeals.Contains(food.Id) ?? false).ToList() ?? new List<FoodModel>();
-            InitUI(); // UI neu laden
+            RefreshData();
         });
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        RefreshData();
+    }
+
+    private void RefreshData()
+    {
+        var activeUser = ActiveUserSingleton.Instance.ActiveUser;
+        List<FoodModel>? meals = FoodListSingleton.Instance.FoodList;
+        _mealsFavored = meals.Where(food => activeUser?.FavoredMeals.Contains(food.Id) ?? false).ToList() ?? new List<FoodModel>();
+
+        InitUI();
     }
 
     private void InitUI()

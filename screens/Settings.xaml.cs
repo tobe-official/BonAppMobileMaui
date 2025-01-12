@@ -16,7 +16,6 @@ public partial class Settings : ContentPage
 
     private void LoadUserData()
     {
-        // Daten in die Inputs laden
         UsernameEntry.Text = _activeUser.Username;
         EmailEntry.Text = _activeUser.Email;
         NotificationsSwitcher.IsToggled = _activeUser.NotificationEnabled;
@@ -31,7 +30,6 @@ public partial class Settings : ContentPage
 
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        // Validierung
         string username = UsernameEntry.Text?.Trim() ?? string.Empty;
         string email = EmailEntry.Text?.Trim() ?? string.Empty;
 
@@ -59,7 +57,6 @@ public partial class Settings : ContentPage
             return;
         }
 
-        // Werte aktualisieren
         _activeUser.Username = username;
         _activeUser.Email = email;
         _activeUser.NotificationEnabled = NotificationsSwitcher.IsToggled;
@@ -69,7 +66,6 @@ public partial class Settings : ContentPage
         _activeUser.DateOfBirth = BirthdatePicker.Date;
         _activeUser.PreferredMealTime = MealTimePicker.Time;
 
-        // Im Singleton speichern
         ActiveUserSingleton.Instance.SetUser(_activeUser);
 
         await DisplayAlert("Success", "Settings have been saved.", "OK");
@@ -82,7 +78,6 @@ public partial class Settings : ContentPage
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        // Benutzer-Session zurücksetzen
         ActiveUserSingleton.Instance.SetUser(new User(
             username: "",
             email: "",
@@ -100,7 +95,7 @@ public partial class Settings : ContentPage
             notificationEnabled: false
         ));
 
-        Application.Current!.MainPage = new AppShell(); // AppShell ist deine Shell-Datei, die alles initialisiert
-        await Shell.Current.GoToAsync("//LoginPage"); // Sicherstellen, dass die App zur Login-Seite navigiert
+        Application.Current!.MainPage = new AppShell();
+        await Shell.Current.GoToAsync("//LoginPage");
     }
 }

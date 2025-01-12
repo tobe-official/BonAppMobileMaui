@@ -6,7 +6,7 @@
 
     <!-- ToolbarItems -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="settings_icon.png"
+        <ToolbarItem IconImageSource="faq_icon.png"
                      Order="Primary"
                      Priority="1"
                      Text=""

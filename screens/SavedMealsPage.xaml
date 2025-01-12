@@ -25,7 +25,6 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center" />
 
-                <!-- Meal List -->
                 <views:MealListProfileFavorite x:Name="MealList"
                                                IsVisible="False" />
             </VerticalStackLayout>

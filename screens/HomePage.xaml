@@ -4,7 +4,6 @@
              x:Class="BonAppMobileMaui.screens.HomePage"
              Title="Home">
     <Grid>
-        <!-- Main Content -->
         <ScrollView>
             <StackLayout>
                 <!-- Toggle Button -->
@@ -16,7 +15,7 @@
                 <!-- Meal Cards Stack Container -->
                 <StackLayout x:Name="MealCardContainer"
                              VerticalOptions="FillAndExpand"
-                             Spacing="0" /> <!-- No space between cards -->
+                             Spacing="0" /> 
             </StackLayout>
         </ScrollView>
     </Grid>
